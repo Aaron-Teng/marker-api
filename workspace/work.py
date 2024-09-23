@@ -1,6 +1,7 @@
 from invoke import convert_pdf_to_markdown_and_save as convert
 import os
 import time
+import glob
 
 inputs = [
     'a.pdf',
@@ -14,6 +15,16 @@ server_url = 'http://127.0.0.1:8000/convert'
 
 
 def ymdhms(): return time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+
+
+def get_inputs_all_pdf():
+    pdf_files = glob.glob(os.path.join('./inputs', '*.pdf'))
+    return pdf_files
+
+
+# 取inputs目录下所有pdf文件
+inputs = get_inputs_all_pdf()
+# print(inputs)
 
 
 total = len(inputs)
